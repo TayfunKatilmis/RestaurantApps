@@ -1,15 +1,18 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
-import useResults from '../hooks/useResults';
 
-export default function SearchBar() {
-    const [searchApi, results] = useResults();
-    console.log(results);
+export default function SearchBar({onTermChange, onTermSubmit, term}) {
   return (
     <View style= {styles.backgroundStyle}>
       <AntDesign style= {styles.iconStyle} name="search1" size={30} color="black" />
-      <TextInput style= {styles.inputStyle} placeholder='Ara' autoCapitalize='none' autoCorrect={false}/>
+      <TextInput style= {styles.inputStyle} 
+      placeholder='Ara' 
+      autoCapitalize='none' 
+      autoCorrect={false}
+      value={term}
+      onChangeText={onTermChange}
+      onEndEditing={onTermSubmit}/>
     </View>
   )
 }
